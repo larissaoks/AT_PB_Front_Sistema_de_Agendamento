@@ -64,7 +64,7 @@ function NavigationBar(){
             <Navbar.Brand href="/homeAdmin" style={{marginLeft:"1%"}}>Sistema de Agendamento</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link href="homeAdmin">Início</Nav.Link>
-              <Nav.Link href="cadastroServico">Cadastro de profissional</Nav.Link>
+              <Nav.Link href="cadastroServico">Cadastro de serviço</Nav.Link>
             </Nav>
             <Navbar.Toggle />
             

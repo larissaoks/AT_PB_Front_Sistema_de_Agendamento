@@ -24,7 +24,6 @@ function LoginComponent(){
         })
         if(res.status === 200){
           localStorage.setItem('token', res.data.token)
-          alert("Bem vindo, " + email)
           history('/homeAdmin')
           
         }

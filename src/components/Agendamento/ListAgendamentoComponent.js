@@ -16,7 +16,7 @@ function ListAgendamentoComponent(){
           console.log("result: ", result)
           if(!result.valid_token || result.tipoUser != 'cliente'){
             localStorage.removeItem('token');
-            history('/');
+            history('/unauthorized');
           } 
         }
         auth()

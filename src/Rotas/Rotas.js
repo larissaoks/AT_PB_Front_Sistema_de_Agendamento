@@ -5,8 +5,9 @@ import ListAgendamentoComponent from "../components/Agendamento/ListAgendamentoC
 import LoginAdminComponent from "../components/Usuario/Admin/LoginAdminComponent";
 import CadastroServicoComponent from "../components/Usuario/Admin/CadastroServicoComponent";
 import CadastroAdminComponent from '../components/Usuario/Admin/CadastroAdminComponent'
-import { Routes, Route } from "react-router-dom";
 import ListServicosComponent from "../components/Usuario/Admin/ListServicosComponent";
+import Unauthorized from "../components/Unauthorized";
+import { Routes, Route } from "react-router-dom";
 
 function Rotas(){
 
@@ -20,6 +21,7 @@ function Rotas(){
         <Route path={"/cadastroServico"} element={<CadastroServicoComponent/>}/>
         <Route path={"/cadastroAdmin"} element={<CadastroAdminComponent/>}/>
         <Route path={"/homeAdmin"} element={<ListServicosComponent/>}/>
+        <Route path={"/unauthorized"} element={<Unauthorized/>}/>
       </Routes>
     )
 }

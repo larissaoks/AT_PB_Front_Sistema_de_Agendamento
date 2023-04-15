@@ -18,7 +18,7 @@ function CadastroServicoComponent (){
       const result = await verifyToken();
       if(!result.valid_token || result.tipoUser != 'admin'){
         localStorage.removeItem('token');
-        history('/admin');
+        history('/unauthorized');
       } 
     }
     auth()
@@ -30,12 +30,15 @@ function CadastroServicoComponent (){
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("token")
     try {
       const res = await api.post('servico/criarServico', {
         nomeServico,
         nomeProfissional,
         valor
-      });
+      },{
+        headers: { Authorization: `Bearer ${token}` }}
+      );
       if(res.status === 200){
         setMessage("Cadastro realizado com sucesso!")
       }
@@ -73,7 +76,7 @@ function CadastroServicoComponent (){
               <Form.Control 
               value={valor}
               onChange={onChangeValor}
-              type="float" placeholder="R$0,00" />
+              type="number" placeholder="R$0,00" />
             </Form.Group>
             <Button variant="primary" type="submit">
               Cadastrar

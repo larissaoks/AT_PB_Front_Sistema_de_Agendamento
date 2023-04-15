@@ -19,7 +19,7 @@ useEffect(() =>{
     const result = await verifyToken();
     if(!result.valid_token || result.tipoUser != 'cliente'){
       localStorage.removeItem('token');
-      history('/');
+      history('/unauthorized');
     } 
   }
   auth()
@@ -50,10 +50,6 @@ function getMaxDate() {
 }
 
 const onChangeDate = (e) => {
-  const selectedDate = new Date(e.target.value);
-  if (selectedDate.getDay() === 0 || selectedDate.getDay() === 1 || selectedDate < new Date()) {
-    e.target.value = '';
-  }
   setDataAgendamento(e.target.value);
 };
 
@@ -96,7 +92,10 @@ const handleSubmit = async (e) => {
   catch(err){
     if(err.response && err.response.status === 204){
       setErrorMessage("Preencha o(s) campo(s) vazio(s)!")
-    } else {
+    } else if(err.response && err.response.status === 409) {
+      setErrorMessage("Esse serviço não pode ser agendado devido à conflito de agenda do profissional. Escolha outro dia ou horário")
+    }
+    else {
       setErrorMessage("Erro interno do servidor. Contate o Administrador da página")
     }
   }

@@ -20,7 +20,7 @@ function CadastroComponent (){
       const result = await verifyToken();
       if(!result.valid_token || result.tipoUser != 'admin'){
         localStorage.removeItem('token');
-        history('/admin');
+        history('/unauthorized');
       } 
     }
     auth()
